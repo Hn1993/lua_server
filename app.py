@@ -13,7 +13,6 @@ def hello_world():
 
 @app.route('/uploadFile/qiji_mu',methods=['POST'])
 def upload_file():
-    ''' 文件上传类 '''
     f = request.files['file']
     version = request.form['version']
     if f :
@@ -33,12 +32,11 @@ def upload_file():
 
 @app.route('/downloadFile/qiji_mu',methods=['GET'])
 def download_file():
-    ''' 文件下载 '''
     #dirpath = os.path.join(app.root_path, 'qiji_mu')
     dirpath = os.getcwd()+"/qiji_mu"
     file_name = request.args.get('file_name')
     if not os.listdir("qiji_mu"):
-        return '文件夹为空'
+        return 'file is none'
     else:
         return send_from_directory( dirpath,file_name, as_attachment=True)
 
